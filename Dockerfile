@@ -33,7 +33,7 @@ RUN \
   rm -rf ruby-2.5.1 && \
   rm -f ruby-2.5.1.tar.gz
 
-RUN gem install bundler --no-document
+RUN gem install bundler -v 1.17.3 --no-document
 
 # Install Google Chrome
 RUN apt-get install -y wget
