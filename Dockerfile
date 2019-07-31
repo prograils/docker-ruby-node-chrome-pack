@@ -35,6 +35,9 @@ RUN \
 
 RUN gem install bundler -v 1.17.3 --no-document
 
+# Install other dependencies (also missing libs for chromedriver)
+RUN apt-get install -y cmake libmagic-dev tzdata xvfb libxi6 libgconf-2-4
+
 # Install Google Chrome
 RUN apt-get install -y wget
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub |  apt-key add -
@@ -43,12 +46,9 @@ RUN apt-get update && apt-get install -y google-chrome-stable
 
 # Install chromedriver
 RUN apt-get install -y zip unzip
-RUN wget https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip
+RUN wget https://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip
 RUN rm -f chromedriver_linux64.zip
 RUN mv chromedriver /usr/bin/chromedriver
 RUN chown root:root /usr/bin/chromedriver
 RUN chmod +x /usr/bin/chromedriver
-
-# Install other dependencies
-RUN apt-get install -y cmake libmagic-dev tzdata xvfb
