@@ -1,0 +1,26 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+  override:
+    - bundle install
+    - docker info
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build -t prograils/ruby-node-chrome-pack .
+    - mkdir -p ~/docker; docker save prograils/ruby-node-chrome-pack > ~/docker/image.tar
+
+test:
+  override:
+    - bundle exec rspec spec --format progress:
+        timeout: 1200 # Compiling node.js takes a while
+
+deployment:
+  hub:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag prograils/ruby-node-chrome-pack prograils/ruby-node-chrome-pack:$CIRCLE_TAG
+      - docker push prograils/ruby-node-chrome-pack:$CIRCLE_TAG
