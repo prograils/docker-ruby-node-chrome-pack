@@ -10,7 +10,8 @@ RUN apt-get -y install build-essential zlib1g-dev libssl-dev \
                libreadline6-dev libyaml-dev git \
                libcurl4-openssl-dev libpq-dev libmysqlclient-dev libxslt-dev \
                libsqlite3-dev libmagickwand-dev imagemagick \
-               python apt-utils curl
+               python apt-utils curl wget zip unzip cmake libmagic-dev tzdata \
+               xvfb libxi6 libgconf-2-4 ghostscript libgs-dev gs-esp
 
 # Install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
@@ -34,10 +35,6 @@ RUN \
   rm -f ruby-2.5.1.tar.gz
 
 RUN gem install bundler -v 1.17.3 --no-document
-
-# Install other dependencies (also missing libs for chromedriver)
-RUN apt-get install -y wget zip unzip cmake libmagic-dev tzdata xvfb libxi6 \
-                       libgconf-2-4 ghostscript=9.26~dfsg+0-0ubuntu0.16.04.4
 
 # Install Google Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub |  apt-key add -
