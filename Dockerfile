@@ -11,7 +11,7 @@ RUN apt-get -y install build-essential zlib1g-dev libssl-dev \
                libcurl4-openssl-dev libpq-dev libmysqlclient-dev libxslt-dev \
                libsqlite3-dev libmagickwand-dev imagemagick \
                python apt-utils curl wget zip unzip cmake libmagic-dev tzdata \
-               xvfb libxi6 libgconf-2-4 ghostscript libgs-dev gs-esp
+               xvfb libxi6 libgconf-2-4 ghostscript libgs-dev
 
 # Install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
