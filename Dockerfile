@@ -7,11 +7,18 @@ RUN apt-get -y upgrade
 
 # Install Ruby on Rails dependencies
 RUN apt-get -y install build-essential zlib1g-dev libssl-dev \
-               libreadline6-dev libyaml-dev git \
-               libcurl4-openssl-dev libpq-dev libmysqlclient-dev libxslt-dev \
-               libsqlite3-dev libmagickwand-dev imagemagick \
-               python apt-utils curl wget zip unzip cmake libmagic-dev tzdata \
-               xvfb libxi6 libgconf-2-4 ghostscript libgs-dev
+               libreadline6-dev libyaml-dev git libcurl4-openssl-dev libpq-dev \
+               libmysqlclient-dev libxslt-dev libsqlite3-dev libmagickwand-dev \
+               imagemagick libmagickcore-dev libmagickwand-dev libpng12-dev \
+               libglib2.0-dev libbz2-dev libjpeg-dev checkinstall libx11-dev \
+               libxext-dev libfreetype6-dev libxml2-dev python apt-utils curl \
+               wget zip unzip cmake libmagic-dev tzdata xvfb libxi6 libgconf-2-4 \
+               ghostscript
+
+# Fix Ghostscript issues with PDFs
+RUN wget -O /usr/local/bin/imagemagick-enable-pdf https://raw.githubusercontent.com/RobertKaczmarek/ubuntu-scripts/master/image/imagemagick-enable-pdf
+RUN chmod +x /usr/local/bin/imagemagick-enable-pdf
+RUN /usr/local/bin/imagemagick-enable-pdf
 
 # Install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
