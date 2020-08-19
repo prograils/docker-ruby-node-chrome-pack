@@ -49,7 +49,7 @@ RUN echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' |
 RUN apt-get update && apt-get install -y google-chrome-stable
 
 # Install chromedriver
-RUN wget https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip
+RUN wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip
 RUN rm -f chromedriver_linux64.zip
 RUN mv chromedriver /usr/bin/chromedriver
