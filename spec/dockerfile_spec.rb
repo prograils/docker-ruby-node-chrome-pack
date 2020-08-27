@@ -22,7 +22,7 @@ describe 'Dockerfile' do
   end
 
   it 'ubuntu' do
-    expect(os_version).to include('Ubuntu 16.04')
+    expect(os_version).to include('Ubuntu 18.04')
   end
 
   %w(libpq-dev imagemagick git).each do |p|
@@ -32,7 +32,7 @@ describe 'Dockerfile' do
   end
 
   describe command('ruby -v') do
-    its(:stdout) { should match(/2\.5\.8/) }
+    its(:stdout) { should match(/2\.6\.6/) }
   end
 
   describe command('node -v') do
