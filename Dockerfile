@@ -8,12 +8,21 @@ RUN apt-get -y upgrade
 # Install Ruby on Rails dependencies
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install build-essential zlib1g-dev libssl-dev \
   libreadline6-dev libyaml-dev git libcurl4-openssl-dev libpq-dev \
-  libmysqlclient-dev libxslt-dev libsqlite3-dev libmagickwand-dev \
-  imagemagick libmagickcore-dev libmagickwand-dev libpng-dev \
-  libglib2.0-dev libbz2-dev libjpeg-dev checkinstall libx11-dev \
-  libxext-dev libfreetype6-dev libxml2-dev python apt-utils curl \
+  libxslt-dev libsqlite3-dev curl \
   wget zip unzip cmake libmagic-dev tzdata xvfb libxi6 libgconf-2-4 \
-  ghostscript
+  ghostscript libxml2-dev libglib2.0-dev libbz2-dev
+
+# install missing libpng12-dev
+RUN mkdir /tmp/libpng && cd /tmp/libpng && \
+  wget -O libpng12-0_1.2.54-1ubuntu1.1_amd64.deb https://launchpad.net/~ubuntu-security/+archive/ubuntu/ppa/+build/15108504/+files/libpng12-0_1.2.54-1ubuntu1.1_amd64.deb && \
+  dpkg -i libpng12-*.deb
+
+
+
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install libmagickwand-dev \
+  imagemagick libmagickcore-dev libmagickwand-dev \
+  libjpeg-dev checkinstall libx11-dev \
+  libxext-dev libfreetype6-dev
 
 # Fix Ghostscript issues with PDFs
 RUN wget -O /usr/local/bin/imagemagick-enable-pdf https://raw.githubusercontent.com/RobertKaczmarek/ubuntu-scripts/master/image/imagemagick-enable-pdf
@@ -22,7 +31,7 @@ RUN /usr/local/bin/imagemagick-enable-pdf
 
 # Install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN DEBIAN_FRONTEND="noninteractive" apt install nodejs
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nodejs
 RUN npm install -g yarn
 
 # Install ruby
