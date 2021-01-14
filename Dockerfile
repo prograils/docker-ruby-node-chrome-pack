@@ -10,7 +10,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install build-essential zlib1g-d
   libreadline6-dev libyaml-dev git libcurl4-openssl-dev libpq-dev \
   libxslt-dev libsqlite3-dev curl \
   wget zip unzip cmake libmagic-dev tzdata xvfb libxi6 libgconf-2-4 \
-  ghostscript libxml2-dev libglib2.0-dev libbz2-dev
+  ghostscript libxml2-dev libglib2.0-dev libbz2-dev libsodium-dev
 
 # install missing libpng12-dev
 RUN mkdir /tmp/libpng && cd /tmp/libpng && \
