@@ -43,7 +43,7 @@ RUN \
   echo "$RUBY_DOWNLOAD_SHA256 *ruby-2.6.6.tar.gz" | sha256sum -c - && \
   tar -xzf ruby-2.6.6.tar.gz && \
   cd ruby-2.6.6 && \
-  ./configure && \
+  ./configure --enable-shared && \
   make && \
   make install && \
   cd .. && \
