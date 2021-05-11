@@ -30,7 +30,7 @@ RUN chmod +x /usr/local/bin/imagemagick-enable-pdf
 RUN /usr/local/bin/imagemagick-enable-pdf
 
 # Install node
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install nodejs
 RUN npm install -g yarn
 
