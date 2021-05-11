@@ -1,7 +1,7 @@
 # docker-ruby-node-chrome-pack
 
-Starting point for running Rails specs - includes Ruby 2.5.8 and
-nodejs 8.16.0 and Chrome (Google Chrome & Chromedriver)
+Starting point for running Rails specs - includes Ruby 2.6.6 and
+nodejs 10.x and Chrome (Google Chrome & Chromedriver)
 
 ## What's inside
 
